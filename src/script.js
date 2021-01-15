@@ -1,25 +1,15 @@
-let wPeaceId = ""
-let bPeaceId = ""
+let pieceId = ""
 
 function givingColors(){
     
     const arrays = document.querySelectorAll('.arr')
-    const whitePeaces = document.querySelectorAll('.peace.white')
-    const blackPeaces = document.querySelectorAll('.peace.black')
-
-    whitePeaces.forEach(
-        wpeace => {
-            wpeace.addEventListener('dragstart', () => {
-                wPeaceId = document.querySelector(`#${wpeace.id}`)
-            })
-        }
-    )
-
-    blackPeaces.forEach(
-        bpeace => {
-            bpeace.addEventListener('dragstart', () => {
-                console.log(bpeace.id)
-                bPeaceId = document.querySelector(`#${bpeace.id}`)
+    const pieces = document.querySelectorAll('.piece')
+    
+    pieces.forEach(
+        piece => {
+            piece.addEventListener('dragstart', () => {
+                pieceId = document.querySelector(`#${piece.id}`)
+                console.log(piece.id)
             })
         }
     )
@@ -30,7 +20,7 @@ function givingColors(){
             if(newBlock[0] === 'a'){
                 if(newBlock[1] % 2 !== 0){
                     block.style.backgroundColor = "#772727"
-                    fillSquareB(block)
+                    fillSquare(block)
                 }
                 else{
                     block.style.color = "#772727"
@@ -39,7 +29,7 @@ function givingColors(){
             else if(newBlock[0] === 'b'){
                 if(newBlock[1] % 2 === 0){
                     block.style.backgroundColor = "#772727"
-                    fillSquareB(block)
+                    fillSquare(block)
                 }
                 else{
                     block.style.color = "#772727"
@@ -48,7 +38,7 @@ function givingColors(){
             else if(newBlock[0] === 'c'){
                 if(newBlock[1] % 2 !== 0){
                     block.style.backgroundColor = "#772727"
-                    fillSquareB(block)
+                    fillSquare(block)
                 }
                 else{
                     block.style.color = "#772727"
@@ -57,7 +47,7 @@ function givingColors(){
             else if(newBlock[0] === 'd'){
                 if(newBlock[1] % 2 === 0){
                     block.style.backgroundColor = "#772727"
-                    fillSquareW(block)
+                    fillSquare(block)
                 }
                 else{
                     block.style.color = "#772727"
@@ -66,7 +56,7 @@ function givingColors(){
             else if(newBlock[0] === 'e'){
                 if(newBlock[1] % 2 !== 0){
                     block.style.backgroundColor = "#772727"
-                    fillSquareW(block)
+                    fillSquare(block)
                 }
                 else{
                     block.style.color = "#772727"
@@ -75,7 +65,7 @@ function givingColors(){
             else if(newBlock[0] === 'f'){
                 if(newBlock[1] % 2 === 0){
                     block.style.backgroundColor = "#772727"
-                    fillSquareW(block)
+                    fillSquare(block)
                 }
                 else{
                     block.style.color = "#772727"
@@ -84,7 +74,7 @@ function givingColors(){
             else if(newBlock[0] === 'g'){
                 if(newBlock[1] % 2 !== 0){
                     block.style.backgroundColor = "#772727"
-                    fillSquareW(block)
+                    fillSquare(block)
                 }
                 else{
                     block.style.color = "#772727"
@@ -93,7 +83,7 @@ function givingColors(){
             else if(newBlock[0] === 'h'){
                 if(newBlock[1] % 2 === 0){
                     block.style.backgroundColor = "#772727"
-                    fillSquareW(block)
+                    fillSquare(block)
                 }
                 else{
                     block.style.color = "#772727"
@@ -105,39 +95,27 @@ function givingColors(){
 
 givingColors()
 
-function fillSquareW(square){
+function fillSquare(square){
     square.addEventListener('dragover', (evt) => {
         evt.preventDefault()
     })
     square.addEventListener('drop', () => {
         if(square.childNodes.length > 1){
-            wPeaceId.classList.add("warning")
-            setTimeout(() => {
-                wPeaceId.classList.remove("warning")
-            },750)
+            if(pieceId.classList.contains("white")){
+                pieceId.classList.add("warning")
+                setTimeout(() => {
+                    pieceId.classList.remove("warning")
+                },750)
+            }
+            else if(pieceId.classList.contains("black")){
+                pieceId.classList.add("warning2")
+                setTimeout(() => {
+                    pieceId.classList.remove("warning2")
+                },750)
+            }
         }
         else{
-            square.appendChild(wPeaceId)
-            wPeaceId = ""
+            square.appendChild(pieceId)
         }
     })
 }
-
-function fillSquareB(square){
-    square.addEventListener('dragover', (evt) => {
-        evt.preventDefault()
-    })
-    square.addEventListener('drop', () => {
-        if(square.childNodes.length > 1){
-            bPeaceId.classList.add("warning2")
-            setTimeout(() => {
-                bPeaceId.classList.remove("warning2")
-            },750)
-        }
-        else{
-            square.appendChild(bPeaceId)
-            bPeaceId = ""
-        }
-    })
-}
-

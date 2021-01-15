@@ -60,7 +60,7 @@ body{
     /* transform: rotate(180deg) */
 }
 
-.peace{
+.piece{
     position: absolute;
 
     width: 50px;
@@ -71,21 +71,21 @@ body{
     cursor: pointer;
 }
 
-.peace.black{
+.piece.black{
     background-color: #1f0e81;
     border: 2px solid #ccc;
 }
 
-.peace.white{
+.piece.white{
     background-color: #eee;
     border: 2px solid #444;
 }
 
-.peace.warning{
+.piece.warning{
     animation: warning .75s;
 }
 
-.peace.warning2{
+.piece.warning2{
     animation: warning2 .75s;
 }
 
