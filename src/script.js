@@ -9,7 +9,7 @@ function givingColors(){
         piece => {
             piece.addEventListener('dragstart', () => {
                 pieceId = document.querySelector(`#${piece.id}`)
-                console.log(piece.id)
+                // console.log(piece.id)
             })
         }
     )
@@ -101,21 +101,82 @@ function fillSquare(square){
     })
     square.addEventListener('drop', () => {
         if(square.childNodes.length > 1){
-            if(pieceId.classList.contains("white")){
-                pieceId.classList.add("warning")
-                setTimeout(() => {
-                    pieceId.classList.remove("warning")
-                },750)
+            warning()
+        }
+        else{
+            const boolean = movingPieces(square)
+
+            if(boolean === true){
+                square.appendChild(pieceId)
             }
-            else if(pieceId.classList.contains("black")){
-                pieceId.classList.add("warning2")
-                setTimeout(() => {
-                    pieceId.classList.remove("warning2")
-                },750)
+            else{
+                warning()
+            }
+
+        }
+    })
+}
+
+function movingPieces(square){
+    const regExp = /\D/
+    const squareArray = square.innerText.split(regExp)
+    const piecePrevSquareArray = pieceId.parentElement.innerText.split(regExp)
+    
+    const squareNumber = Number(squareArray[1])
+    const piecePrevSquareNumber = Number(piecePrevSquareArray[1])
+
+    const squareModule = squareNumber % 2
+    const pieceModule = piecePrevSquareNumber % 2
+
+    const regExp1 = /\d/
+    const squareArray1 = square.innerText.split(regExp1)
+    const piecePrevSquareArray1 = pieceId.parentElement.innerText.split(regExp1)
+
+    if(squareModule){
+        //Casas Ímpares
+        
+        if(pieceModule !== squareModule && ((squareNumber - piecePrevSquareNumber) < 2 && (squareNumber - piecePrevSquareNumber) > -2)){
+            if(pieceId.classList.contains("white") &&  (squareArray1[0].charCodeAt(0) < piecePrevSquareArray1[0].charCodeAt(0))){
+                return true
+            }
+            else if(pieceId.classList.contains("black") &&  (squareArray1[0].charCodeAt(0) > piecePrevSquareArray1[0].charCodeAt(0))){
+                return true
+            }
+            else{
+                return false
+            }
+    }
+}
+    else{
+        //Casas Pares
+        if(pieceModule !== squareModule && ((squareNumber - piecePrevSquareNumber) < 2 && (squareNumber - piecePrevSquareNumber) > -2)){
+            if(pieceId.classList.contains("white") &&  (squareArray1[0].charCodeAt(0) < piecePrevSquareArray1[0].charCodeAt(0))){
+                return true
+            }
+            else if(pieceId.classList.contains("black") &&  (squareArray1[0].charCodeAt(0) > piecePrevSquareArray1[0].charCodeAt(0))){
+                return true
+            }
+            else{
+                return false
             }
         }
         else{
-            square.appendChild(pieceId)
+            return false
         }
-    })
+    }
+}
+
+function warning(){
+    if(pieceId.classList.contains("white")){
+        pieceId.classList.add("warning")
+        setTimeout(() => {
+            pieceId.classList.remove("warning")
+        },750)
+    }
+    else if(pieceId.classList.contains("black")){
+        pieceId.classList.add("warning2")
+        setTimeout(() => {
+            pieceId.classList.remove("warning2")
+        },750)
+    }
 }
