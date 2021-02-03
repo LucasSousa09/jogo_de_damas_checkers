@@ -1,4 +1,7 @@
-# jogo_de_damas_checkers
- Creating the game logic in the frontend utilizing HTML, CSS and  JS
+# Jogo_de_Damas(checkers)
+##Tecnologias Utilizadas
+ HTML
+ CSS
+ JAVASCRIPT
  
  ![](src/images/checkers_damas.png)
