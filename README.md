@@ -1,4 +1,4 @@
-# Jogo_de_Damas(checkers)
+# Jogo de Damas (Checkers)
 ## Tecnologias Utilizadas
 - HTML
 - CSS
